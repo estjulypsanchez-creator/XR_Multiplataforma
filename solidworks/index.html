@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Ambiente XR Industrial - A-Frame</title>
+    <!-- Librería A-Frame CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.1/dist/aframe-master.min.js"></script>
+  </head>
+  <body>
+    <a-scene webxr="optionalFeatures: hit-test, local-floor">
+      
+      <!-- 1. Carga de Recurso Local -->
+      <a-assets>
+        <a-asset-item id="miModeloCAD" src="models/paja.glb"></a-asset-item>
+      </a-assets>
+
+      <!-- 2. Iluminación -->
+      <a-entity type="ambient" color="#FFF" intensity="0.8"></a-entity>
+      <a-entity type="directional" position="-1 2 1" intensity="0.8"></a-entity>
+
+      <!-- 3. Entorno (Cielo y Piso) -->
+      <a-sky color="#ECECEC"></a-sky>
+      <a-plane rotation="-90 0 0" width="30" height="30" color="#7BC8A4"></a-plane>
+
+      <!-- 4. Sistema de Cámara -->
+      <a-entity id="rig" position="0 1.6 3">
+        <a-camera look-controls wasd-controls></a-camera>
+      </a-entity>
+
+      <!-- 5. Instancia de tu Modelo CAD -->
+      <!-- Si al cargar lo ves gigante o muy pequeño, ajusta scale="0.1 0.1 0.1" o scale="0.001 0.001 0.001" -->
+      <a-entity gltf-model="#miModeloCAD" 
+                position="0 1 -3" 
+                rotation="0 45 0"
+                scale="1 1 1">
+      </a-entity>
+
+    </a-scene>
+  </body>
+</html>
